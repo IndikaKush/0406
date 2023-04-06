@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.UserMapper">
+
+    <insert id="insert" parameterType="com.example.model.UserModel" useGeneratedKeys="true" keyProperty="id">
+ 
+        INSERT INTO  mp_auth.hkc2 (name,day,remaining) 
+        VALUES (#{name},#{day},#{remaining})
+    </insert>
+    
+    <select id="checkAccount" resultType="com.example.model.UserModel"  parameterType = "com.example.model.UserModel">
+        	SELECT name FROM mp_auth.hkc2 WHERE name = #{name} ; 
+    </select>
+    
+<select id="takeData" resultType="com.example.model.UserModel"  parameterType = "com.example.model.UserModel">
+        	SELECT * FROM mp_auth.hkc2 ;	
+    </select>
+    <select id="takeDay" resultType="com.example.model.UserModel"  parameterType = "com.example.model.UserModel">
+        	SELECT * FROM mp_auth.hkc2 Where id=#{id} ; 
+    </select>
+    
+    <!-- delete 機能ため -->
+ 	 <select id="selectAllWhereId" resultType="com.example.model.UserModel"  parameterType = "com.example.model.UserModel">
+        	SELECT * FROM mp_auth.hkc2 where id=#{id} ; 
+    </select>
+ 	 <delete id="deleteUser" parameterType="com.example.model.UserModel">
+  		DELETE FROM mp_auth.hkc2 WHERE id = #{id};
+	</delete>
+	
+  	<update id="update" parameterType="com.example.model.UserModel" useGeneratedKeys="true" keyProperty="id">
+        UPDATE mp_auth.hkc2 SET name = #{name},day=#{day} WHERE id = #{id}
+    </update>
+
+
+</mapper>
